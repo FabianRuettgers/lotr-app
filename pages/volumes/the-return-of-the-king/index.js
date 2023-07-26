@@ -16,7 +16,7 @@ export default function volume() {
     <>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
-      <Link href="../">← All Volumes</Link>;
+      <Link href="../">← All Volumes</Link>
       <ul>
         {data.books.map((book) => (
           <li key={uid()}>{book.title}</li>
