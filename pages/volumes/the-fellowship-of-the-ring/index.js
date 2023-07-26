@@ -6,7 +6,12 @@ import { uid } from "uid";
 export default function volume() {
   const volume = "the-fellowship-of-the-ring";
   const data = volumes.find(({ slug }) => slug === volume);
-  console.log(data);
+
+  const currentIndex = volumes.findIndex(({ slug }) => slug === volume);
+  const prevVolume = volumes[currentIndex - 1];
+  const nextVolume = volumes[currentIndex + 1];
+
+  console.log();
   return (
     <>
       <h1>{data.title}</h1>
@@ -18,11 +23,23 @@ export default function volume() {
         ))}
       </ul>
       <Image
-        src="/../../../public/images/the-fellowship-of-the-ring.png"
+        src={`/images/${volume}.png`}
         width={140}
         height={230}
-        alt="volume"
+        alt={volume}
       />
+      <ul>
+        {prevVolume ? (
+          <li>
+            <Link href={`/volumes/${prevVolume.slug}`}>prevVolume</Link>
+          </li>
+        ) : null}
+        {nextVolume ? (
+          <li>
+            <Link href={`/volumes/${nextVolume.slug}`}>nextVolume</Link>
+          </li>
+        ) : null}
+      </ul>
     </>
   );
 }
